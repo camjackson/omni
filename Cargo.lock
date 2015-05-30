@@ -2,9 +2,9 @@
 name = "omni"
 version = "0.0.1"
 dependencies = [
- "glium 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "glium 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "glutin 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
- "oxen 0.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "oxen 0.0.1",
  "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -59,7 +59,7 @@ name = "gdi32-sys"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "winapi 0.1.19 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -92,7 +92,7 @@ dependencies = [
 
 [[package]]
 name = "glium"
-version = "0.4.2"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "cgmath 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -128,7 +128,7 @@ dependencies = [
  "user32-sys 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "wayland-client 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "wayland-kbd 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "winapi 0.1.19 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "x11-dl 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -174,7 +174,7 @@ name = "kernel32-sys"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "winapi 0.1.19 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -257,9 +257,8 @@ dependencies = [
 [[package]]
 name = "oxen"
 version = "0.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "glium 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "glium 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "glutin 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.25 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -308,7 +307,7 @@ name = "user32-sys"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "winapi 0.1.19 (registry+https://github.com/rust-lang/crates.io-index)",
+ "winapi 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "winapi-build 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -336,7 +335,7 @@ dependencies = [
 
 [[package]]
 name = "winapi"
-version = "0.1.19"
+version = "0.1.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "libc 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
