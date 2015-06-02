@@ -1,5 +1,7 @@
 use std::sync::{Arc, Mutex};
 use oxen::Transform;
+use seeds::Seed;
+use oxen::Oxen;
 
 pub struct Cell {
     pub transform: Arc<Mutex<Transform>>,
@@ -7,6 +9,25 @@ pub struct Cell {
 }
 
 impl Cell {
+    pub fn new<F>(oxen: &mut Oxen, x: i16, y: i16, seed: Seed, square_size: f32, coords_to_index: F) -> Cell
+        where F : Fn((i16, i16)) -> usize {
+        let cell = Cell {
+            transform: Arc::new(Mutex::new(Transform {
+                x: (x as f32 * square_size + square_size / 2.),
+                y: -(y as f32 * square_size + square_size / 2.),
+                visible: seed(x, y),
+                scale: square_size,
+            })),
+            neighbours: [
+                (x-1, y-1), (x, y-1), (x+1, y-1),
+                (x-1, y  ),           (x+1, y  ),
+                (x-1, y+1), (x, y+1), (x+1, y+1)
+            ].iter().map(|n| coords_to_index(*n)).collect(),
+        };
+        oxen.attach_render_object(cell.transform.clone(), "square").unwrap();
+        cell
+    }
+
     pub fn update(&mut self, alive_neighbours: usize) {
         let mutex = self.transform.clone();
         let mut transform = mutex.lock().unwrap();

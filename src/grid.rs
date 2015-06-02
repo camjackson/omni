@@ -1,34 +1,19 @@
-use std::sync::{Arc, Mutex};
-
-use oxen::Transform;
-
 use cell::Cell;
 use seeds::Seed;
-use oxen::Behaviour;
+use oxen::{Oxen, Behaviour};
 
 pub struct Grid {
     pub cells: Vec<Cell>,
 }
 
 impl Grid {
-    pub fn new(seed: Seed, width: i16, height: i16, square_size: f32) -> Grid {
+    pub fn new(oxen: &mut Oxen, seed: Seed, width: i16, height: i16, square_size: f32) -> Grid {
         let mut cells = Vec::new();
 
+        let coords_fn = |coords: (i16, i16)| { coords_to_index(coords, width, height) };
         for y in (0..height) {
             for x in (0..width) {
-                cells.push(Cell {
-                    transform: Arc::new(Mutex::new(Transform {
-                        x: (x as f32 * square_size + square_size / 2.),
-                        y: -(y as f32 * square_size + square_size / 2.),
-                        visible: seed(x, y),
-                        scale: square_size,
-                    })),
-                    neighbours: [
-                        (x-1, y-1), (x, y-1), (x+1, y-1),
-                        (x-1, y  ),           (x+1, y  ),
-                        (x-1, y+1), (x, y+1), (x+1, y+1)
-                    ].iter().map(|n| coords_to_index(*n, width, height)).collect(),
-                });
+                cells.push(Cell::new(oxen, x, y, seed, square_size, &coords_fn));
             }
         }
         Grid{ cells: cells }
