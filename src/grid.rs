@@ -1,3 +1,5 @@
+use glium::glutin::VirtualKeyCode;
+
 use cell::Cell;
 use seeds::Seed;
 use oxen::{Oxen, Behaviour};
@@ -21,7 +23,7 @@ impl Grid {
 }
 
 impl Behaviour for Grid {
-    fn update(&mut self) {
+    fn update(&mut self, _: &Fn(VirtualKeyCode) -> bool) {
         let mut alive_neighbours = Vec::new();
         for cell in self.cells.iter() {
             alive_neighbours.push(cell.neighbours.iter().filter(|i| {
