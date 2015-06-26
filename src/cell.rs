@@ -15,8 +15,11 @@ impl Cell {
             transform: Arc::new(Mutex::new(Transform {
                 x: (x as f32 * square_size + square_size / 2.),
                 y: -(y as f32 * square_size + square_size / 2.),
+                z: 0.,
                 visible: seed(x, y),
-                scale: square_size,
+                scale_x: square_size,
+                scale_y: square_size,
+                scale_z: square_size,
             })),
             neighbours: [
                 (x-1, y-1), (x, y-1), (x+1, y-1),
