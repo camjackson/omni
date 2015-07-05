@@ -8,13 +8,14 @@ pub struct WasdPlaneCamera {
 }
 
 impl WasdPlaneCamera {
-    pub fn new(x: f32, y: f32) -> WasdPlaneCamera {
-        let transform = Transform{
-            x: x, y: y, z: 0.,
-            scale_x: 1., scale_y: 1., scale_z: 1.,
-            visible: true
-        };
-        let camera = Arc::new(Mutex::new(OxenCamera{transform: transform} ));
+    pub fn new(x: f32, y: f32, width: f32, height: f32) -> WasdPlaneCamera {
+        let transform = Transform::new(
+            x, y, 0.,
+            0., 0., 0.,
+            width, height, 1.,
+            true,
+        );
+        let camera = Arc::new(Mutex::new(OxenCamera{transform: transform}));
         WasdPlaneCamera{oxen_camera: camera}
     }
 }
@@ -22,16 +23,16 @@ impl WasdPlaneCamera {
 impl Behaviour for WasdPlaneCamera {
     fn update(&mut self, key_pressed: &Fn(VirtualKeyCode) -> bool) {
         if key_pressed(VirtualKeyCode::W) {
-            self.oxen_camera.lock().unwrap().transform.y += 0.01;
+            self.oxen_camera.lock().unwrap().transform.translate(0., 0.01, 0.);
         }
         if key_pressed(VirtualKeyCode::S) {
-            self.oxen_camera.lock().unwrap().transform.y -= 0.01;
+            self.oxen_camera.lock().unwrap().transform.translate(0., -0.01, 0.);
         }
         if key_pressed(VirtualKeyCode::A) {
-            self.oxen_camera.lock().unwrap().transform.x -= 0.01;
+            self.oxen_camera.lock().unwrap().transform.translate(-0.01, 0., 0.);
         }
         if key_pressed(VirtualKeyCode::D) {
-            self.oxen_camera.lock().unwrap().transform.x += 0.01;
+            self.oxen_camera.lock().unwrap().transform.translate(0.01, 0., 0.);
         }
     }
 }

@@ -12,15 +12,12 @@ impl Cell {
     pub fn new<F>(oxen: &mut Oxen, x: i16, y: i16, seed: Seed, square_size: f32, coords_to_index: F) -> Cell
         where F : Fn((i16, i16)) -> usize {
         let cell = Cell {
-            transform: Arc::new(Mutex::new(Transform {
-                x: (x as f32 * square_size + square_size / 2.),
-                y: -(y as f32 * square_size + square_size / 2.),
-                z: 0.,
-                visible: seed(x, y),
-                scale_x: square_size,
-                scale_y: square_size,
-                scale_z: square_size,
-            })),
+            transform: Arc::new(Mutex::new(Transform::new(
+                x as f32 * square_size + square_size / 2., -(y as f32 * square_size + square_size / 2.), 0.,
+                0., 0., 0.,
+                square_size, square_size, square_size,
+                seed(x, y),
+            ))),
             neighbours: [
                 (x-1, y-1), (x, y-1), (x+1, y-1),
                 (x-1, y  ),           (x+1, y  ),
@@ -50,7 +47,7 @@ mod tests {
     use oxen::Transform;
 
     fn new_cell(visible: bool) -> Cell {
-        Cell { transform: Arc::new(Mutex::new(Transform{x: 0., y: 0., visible: visible, scale: 1., })), neighbours: Vec::new()}
+        Cell { transform: Arc::new(Mutex::new(Transform::new(0., 0., 0., 0., 0., 0., 1., 1., 1., visible))), neighbours: Vec::new()}
     }
 
     #[test]
