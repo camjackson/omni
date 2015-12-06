@@ -34,6 +34,12 @@ impl Behaviour for WasdPlaneCamera {
         if key_pressed(VirtualKeyCode::D) {
             self.oxen_camera.lock().unwrap().transform.translate(0.01, 0., 0.);
         }
+        if key_pressed(VirtualKeyCode::R) {
+            self.oxen_camera.lock().unwrap().transform.translate(0., 0., 0.01);
+        }
+        if key_pressed(VirtualKeyCode::F) {
+            self.oxen_camera.lock().unwrap().transform.translate(0., 0., -0.01);
+        }
     }
 }
 
