@@ -1,3 +1,5 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 Depends upon [camjackson/oxen](https://github.com/camjackson/oxen), which is still
 under active development, so the dependency is local for now.
 
